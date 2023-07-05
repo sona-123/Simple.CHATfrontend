@@ -34,12 +34,12 @@ const ProfileModal = ({ user, children, size }) => {
             />
           }
           onClick={onOpen}
-          background="inherit"
+          background="#9A139A"
           borderRadius={"100%"}
         />
       )}
 
-      <Modal size={"lg"} isOpen={isOpen} onClose={onClose} isCentered  background={"blue"}>
+      <Modal size={"lg"} isOpen={isOpen} onClose={onClose} isCentered  background={"#9A139A"}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
