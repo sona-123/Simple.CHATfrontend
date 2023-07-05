@@ -59,7 +59,7 @@ const MyChats = ({ fetchAgain }) => {
       flexDir="column"
       alignItems={"center"}
       p={3}
-      bg="white"
+      bg="#3E103F"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth={"1px"}
@@ -68,6 +68,7 @@ const MyChats = ({ fetchAgain }) => {
       <Box
         pb={3}
         px={3}
+        color={"white"}
         fontSize={{ base: "large", md: "2xl" }}
         fontFamily="QuickSand"
         display={"flex"}
@@ -81,8 +82,9 @@ const MyChats = ({ fetchAgain }) => {
             display={"flex"}
             fontSize={{ base: "12px", md: "10px", lg: "14px" }}
             rightIcon={<AddIcon />}
+            
           >
-            New Group Chat
+            New Chat
           </Button>
         </GroupChatModal>
       </Box>
@@ -90,7 +92,7 @@ const MyChats = ({ fetchAgain }) => {
         display={"flex"}
         flexDir="column"
         p={3}
-        bg="#F8F8F8"
+        bg="#3E103F"
         w="100%"
         h="100%"
         borderRadius={"lg"}
@@ -102,11 +104,13 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => selectChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
-                color={selectedChat === chat ? "white" : "black"}
+                bg={selectedChat === chat ? "#944F9A":"#3E103F"}
+                color={selectedChat === chat ? "white" : "white"}
                 px={3}
                 py={2}
                 borderRadius={"lg"}
+               
+                border={"1px"}
                 key={chat._id}
               >
                 <Text fontWeight={"medium"}>
@@ -115,7 +119,7 @@ const MyChats = ({ fetchAgain }) => {
                     : chat.chatName}
                 </Text>
                 {chat.latestMessage ? (
-                  <Text color={selectedChat === chat ? "white" : "GrayText"}>
+                  <Text color={selectedChat === chat ? "white" : "white"}>
                     {!chat.isGroupChat
                       ? chat.latestMessage.content
                       : chat.latestMessage.sender._id === loggedUser._id

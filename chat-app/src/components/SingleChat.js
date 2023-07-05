@@ -85,7 +85,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         }
       } else {
         setMessages([...messages, newMessageReceived]);
-        removeNotification(newMessageReceived.chat._id)
+        removeNotification(newMessageReceived.chat._id);
       }
     });
   });
@@ -125,7 +125,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `${API}/api/message/${selectedChat._id}`,
         config
       );
 
@@ -159,7 +159,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         setNewMessage("");
 
         const { data } = await axios.post(
-          "/api/message",
+          `${API}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat._id,
@@ -216,9 +216,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       fetchAgain={fetchAgain}
                       setFetchAgain={setFetchAgain}
                       fetchMessages={fetchMessages}
+                      name={selectedChat.chatName.toUpperCase()}
                     />
                   </Box>
-                  {selectedChat.chatName.toUpperCase()}
+               
                 </>
               )}
             </div>
@@ -237,6 +238,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent={"flex-end"}
             p={3}
+            style={{  backgroundImage: "url(" + "https://images.pexels.com/photos/6039245/pexels-photo-6039245.jpeg?auto=compress&cs=tinysrgb&h=450" + ")" }}
+            
             bg="#E8E8E8"
             w={"100%"}
             h={"100%"}
@@ -274,15 +277,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             <FormControl isRequired mt={3} display="flex">
               <Input
                 variant="filled"
-                bg="#E0E0E0"
+                bgColor="white"
                 placeholder="Enter a message..."
                 onChange={typingHandler}
                 value={newMessage}
-                backgroundColor="#D3D3D3"
+                color={"white"}
+              
+                
               />
               <Button
                 rightIcon={<SendIcon style={{ fill: "white" }} />}
-                backgroundColor="#187BCD"
+                backgroundColor="#3E103F"
+                color="white"
                 ml={1}
                 onClick={sendMessage}
               />
@@ -294,6 +300,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           display={"flex"}
           alignItems="center"
           justifyContent={"center"}
+          
           h="100%"
         >
           <Text fontSize={"3xl"} pb={3} fontFamily="QuickSand">

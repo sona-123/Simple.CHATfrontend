@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToast, Box, Button, Tooltip, Text, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, Input, Avatar, Spinner } from "@chakra-ui/react";
+import {
+  useToast,
+  Box,
+  Button,
+  Tooltip,
+  Text,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  Input,
+  Avatar,
+  Spinner,
+} from "@chakra-ui/react";
 import { Search, Notifications, ExpandMore } from "@mui/icons-material";
 import { ChatState } from "../../Context/chatProvider";
 import ProfileModal from "./ProfileModal";
@@ -63,7 +82,10 @@ const SideDrawer = () => {
         },
       };
 
-      const { data } = await axios.get(`${API}/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `${API}/api/user?search=${search}`,
+        config
+      );
 
       setLoading(false);
       setSearchResult(data);
@@ -116,29 +138,49 @@ const SideDrawer = () => {
         display={"flex"}
         justifyContent="space-between"
         alignItems={"center"}
-        bg="black"
+        bg="#3E103F"
         w={"100%"}
-        p={"5px 10px 5px 10px"}
-        borderWidth="5px"
+        p={"10px 10px 10px 10px"}
+        // borderWidth="5px"
       >
-        <Tooltip label="Search Users to Chat" hasArrow placement="bottom-end">
-          <Button color="white" variant={"ghost"} onClick={onOpen} bgColor="#0073B8">
-            <Search />
-            <Text display={{ base: "none", md: "flex" }} px="4" color="white">
-              Search User
-            </Text>
-          </Button>
-        </Tooltip>
-
-        <Text fontSize="3xl" fontFamily="QuickSand" color="white" fontWeight="extrabold">
-          Simple.CHAT
+        
+  <Menu>
+            <MenuButton
+              p={1}
+              as={Button}
+              color={"white"}
+              rightIcon={<ExpandMore />}
+              backgroundColor="#3E103F"
+            >
+              <Avatar
+                size="sm"
+                cursor={"pointer"}
+                name={user.name}
+                src={user.pic}
+              />
+            </MenuButton>
+            <MenuList>
+              <ProfileModal user={user} size="sm">
+                <MenuItem>My Profile</MenuItem>
+              </ProfileModal>
+              <MenuDivider />
+              <MenuItem onClick={LogoutHandler}>Logout</MenuItem>
+            </MenuList>
+          </Menu>
+        <Text
+          fontSize="3xl"
+          fontFamily="QuickSand"
+          color="white"
+          fontWeight="extrabold"
+        >
+         Simple.CHAT
         </Text>
 
         <div style={{ display: "flex", alignContent: "center" }}>
           <Menu>
-            <MenuButton p={2}>
+            <MenuButton p={2} color="white">
               <NotificationBadge
-
+                colorScheme="white"
                 count={notification.length}
                 effect={Effect.SCALE}
               />
@@ -156,7 +198,7 @@ const SideDrawer = () => {
                     }}
                     display="contents"
                   >
-                    <Box fontWeight={"semibold"}>
+                    <Box color={"#3E103F"} fontWeight={"semibold"}>
                       {notif.chat.isGroupChat
                         ? `New Message in ${notif.chat.chatName}`
                         : `New Message from ${
@@ -169,36 +211,29 @@ const SideDrawer = () => {
                 </>
               ))}
             </MenuList>
+            
+            <Tooltip label="Search Users to Chat" hasArrow placement="bottom-end">
+          <Button
+            color="white"
+            variant={"ghost"}
+            onClick={onOpen}
+            bgColor="#3E103F"
+          >
+            <Search />
+            {/* <Text display={{ base: "none", md: "flex" }} px="4" color="white">
+              Search User
+            </Text> */}
+          </Button>
+        </Tooltip>
           </Menu>
-          <Menu>
-            <MenuButton
-              p={1}
-              as={Button}
-              rightIcon={<ExpandMore />}
-              backgroundColor="#0073B8"
-            >
-              <Avatar
-                size="sm"
-                cursor={"pointer"}
-                name={user.name}
-                src={user.pic}
-              />
-            </MenuButton>
-            <MenuList>
-              <ProfileModal user={user} size="sm">
-                <MenuItem>My Profile</MenuItem>
-              </ProfileModal>
-              <MenuDivider />
-              <MenuItem onClick={LogoutHandler}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
+        
         </div>
       </Box>
 
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth={"1px"}>Search Users</DrawerHeader>
+          <DrawerHeader borderBottomWidth={"1px"} bgColor={"#3E103F"} color={"white"} >Search Users</DrawerHeader>
           <DrawerBody>
             <Box display={"flex"} pb={2}>
               <Input
@@ -207,7 +242,7 @@ const SideDrawer = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button bgColor={"#3E103F"} onClick={handleSearch}>Find</Button>
             </Box>
             {loading ? (
               <ChatLoading />
