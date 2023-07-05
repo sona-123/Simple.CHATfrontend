@@ -238,6 +238,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent={"flex-end"}
             p={3}
+            style={{  backgroundImage: "url(" + "https://images.pexels.com/photos/6039245/pexels-photo-6039245.jpeg?auto=compress&cs=tinysrgb&h=450" + ")" }}
+            
             bg="#E8E8E8"
             w={"100%"}
             h={"100%"}

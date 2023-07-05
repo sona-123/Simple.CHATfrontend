@@ -141,7 +141,7 @@ const SideDrawer = () => {
         bg="#3E103F"
         w={"100%"}
         p={"10px 10px 10px 10px"}
-        borderWidth="5px"
+        // borderWidth="5px"
       >
         
   <Menu>
